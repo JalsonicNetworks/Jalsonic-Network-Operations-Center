@@ -173,7 +173,7 @@ createApp({
 
         const init = async () => {
             try {
-                const response = await fetch('nocs/noc-report.json');
+                const response = await fetch('https://raw.githubusercontent.com/JalsonicNetworks/Jalsonic-Network-Operations-Center/refs/heads/main/public/nocs/noc-report.json');
 
                 if (!response.ok) {
                     throw new Error(`HTTP Error: ${response.status}`);
