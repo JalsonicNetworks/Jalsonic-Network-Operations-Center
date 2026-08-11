@@ -20,14 +20,14 @@
           "name": "Mongodb N. Virginia",
           "statusClass": "ok",
           "type": "Mongodb · AWS / N. Virginia (us-east-1)",
-          "metric": "4 ms",
+          "metric": "10 ms",
           "status": "Operational"
         },
         {
           "name": "Mongodb Lahore",
           "statusClass": "ok",
           "type": "Mongodb · Lahore / JSN WS (LR-1)",
-          "metric": "9 ms",
+          "metric": "15 ms",
           "status": "Operational"
         }
       ]
