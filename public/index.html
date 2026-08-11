@@ -5,9 +5,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jalsonic Network Operations Center — Status</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
+
+<script src="./vue.js"></script>
+
 <style>
   :root{
     --bg:#FFFFFF;
@@ -98,12 +101,12 @@
   }
 </style>
 </head>
-<body>
+<body id="app">
 
   <header>
     <div class="brand">
       <span class="dot"></span>
-      <span class="name">Jalsonic Networks <span>/ Network Operations Center</span></span>
+      <span class="name">{{ companyName }} <span>/ {{ companypart }}</span></span>
     </div>
     <span class="clock" id="clock">--:--:-- UTC</span>
   </header>
@@ -117,68 +120,24 @@
     </div>
 
 
-    <section>
-      <div class="section-head"><h2>Message</h2><span class="count">0</span></div>
-      <div class="row">
-        <div class="row-left"><span class="row-dot"></span><span class="row-name"></span><span class="row-type">No Message</span></div>
-        <!-- <div class="row-right"><span class="row-metric"></span><span class="row-tag ok"></span></div> -->
+    <section v-for="(section, sectionIndex) in sections" :key="sectionIndex">
+      <div class="section-head">
+          <h2>{{ section.name }}</h2>
+          <span class="count">{{ section.count }}</span>
       </div>
-    </section>
 
+      <div class="row" v-for="(item, itemIndex) in section.items" :key="itemIndex">
+          <div class="row-left">
+              <span class="row-dot" :class="item.statusClass"></span>
+              <span class="row-name">{{ item.name }} </span>
+              <span class="row-type">{{ item.type }} </span>
+          </div>
 
-    <section>
-      <div class="section-head"><h2>Databases</h2><span class="count">2</span></div>
-      <div class="row">
-        <div class="row-left"><span class="row-dot ok"></span><span class="row-name">Mongodb N. Virginia</span><span class="row-type">Mongodb · AWS / N. Virginia (us-east-1)</span></div>
-        <div class="row-right"><span class="row-metric">4 ms</span><span class="row-tag ok">Operational</span></div>
-      </div>
-      <div class="row">
-        <div class="row-left"><span class="row-dot ok"></span><span class="row-name">Mongodb Lahore</span><span class="row-type">Mongodb · Lahore / JSN WS (LR-1)</span></div>
-        <div class="row-right"><span class="row-metric">9 ms</span><span class="row-tag ok">Operational</span></div>
-      </div>
-    </section>
+          <div class="row-right ok" v-if="item.metric || item.status">
+              <span class="row-metric"> {{ item.metric }} </span>
+              <span class="row-tag ok" :class="item.statusClass"> {{ item.status }} </span>
+          </div>
 
-    <section>
-      <div class="section-head"><h2>Networks</h2><span class="count">1</span></div>
-      <div class="row">
-        <div class="row-left"><span class="row-dot ok"></span><span class="row-name">JSN-LR-1</span><span class="row-type">Lahore, PK</span></div>
-        <div class="row-right"><span class="row-metric">10 Gbps</span><span class="row-tag ok">Operational</span></div>
-      </div>
-    </section>
-
-    <section>
-      <div class="section-head"><h2>Brands</h2><span class="count">3</span></div>
-      <div class="row">
-        <div class="row-left"><span class="row-dot ok"></span><span class="row-name">www.jalsonic.com</span><span class="row-type">Corporate site</span></div>
-        <div class="row-right"><span class="row-metric">96 ms</span><span class="row-tag ok">Operational</span></div>
-      </div>
-      <div class="row">
-        <div class="row-left"><span class="row-dot ok"></span><span class="row-name">www.onestbird.com</span><span class="row-type">Customer portal</span></div>
-        <div class="row-right"><span class="row-metric">142 ms</span><span class="row-tag ok">Operational</span></div>
-      </div>
-      <div class="row">
-        <div class="row-left"><span class="row-dot ok"></span><span class="row-name">www.enora.jalsonic.com</span><span class="row-type">Corporate site</span></div>
-        <div class="row-right"><span class="row-metric">142 ms</span><span class="row-tag ok">Operational</span></div>
-      </div>
-      <div class="row">
-        <div class="row-left"><span class="row-dot warn"></span><span class="row-name">www.onestbuy.com</span><span class="row-type">E-commerce storefront</span></div>
-        <div class="row-right"><span class="row-metric">210 ms</span><span class="row-tag warn">Under Development</span></div>
-      </div>
-    </section>
-
-    <section>
-      <div class="section-head"><h2>APIs</h2><span class="count">3</span></div>
-      <div class="row">
-        <div class="row-left"><span class="row-dot ok"></span><span class="row-name">auth-api</span><span class="row-type">/v2/auth</span></div>
-        <div class="row-right"><span class="row-metric">15 ms</span><span class="row-tag ok">Operational</span></div>
-      </div>
-      <div class="row">
-        <div class="row-left"><span class="row-dot ok"></span><span class="row-name">billing-api</span><span class="row-type">/v1/billing</span></div>
-        <div class="row-right"><span class="row-metric">13 ms</span><span class="row-tag ok">Operational</span></div>
-      </div>
-      <div class="row">
-        <div class="row-left"><span class="row-dot ok"></span><span class="row-name">webhook-gateway</span><span class="row-type">Outbound delivery</span></div>
-        <div class="row-right"><span class="row-metric">8 ms</span><span class="row-tag ok">Operational</span></div>
       </div>
     </section>
 
@@ -200,6 +159,50 @@
   }
   tick();
   setInterval(tick, 1000);
+</script>
+
+<script>
+const { createApp, ref } = Vue;
+
+createApp({
+    setup() {
+
+        const sections = ref([]);
+        const loading = ref(true);
+        const error = ref(null);
+
+        const init = async () => {
+            try {
+                const response = await fetch('nocs/noc-report.json');
+
+                if (!response.ok) {
+                    throw new Error(`HTTP Error: ${response.status}`);
+                }
+
+                const data = await response.json();
+
+                sections.value = data.sections || [];
+
+            } catch (err) {
+                console.error('Failed to load NOC report:', err);
+                error.value = 'Unable to load NOC report.';
+            } finally {
+                loading.value = false;
+            }
+        };
+
+        // Initialize
+        init();
+
+        return {
+            companyName: "Jalsonic Networks",
+            companypart: "Network Operations Center",
+            sections,
+            loading,
+            error
+        };
+    }
+}).mount('#app');
 </script>
 
 </body>

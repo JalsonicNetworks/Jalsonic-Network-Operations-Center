@@ -1,0 +1,110 @@
+{
+  "sections": [
+    {
+      "name": "Message",
+      "count": 0,
+      "items": [
+        {
+          "name": "",
+          "type": "No Message",
+          "status": null,
+          "metric": null
+        }
+      ]
+    },
+    {
+      "name": "Databases",
+      "count": 2,
+      "items": [
+        {
+          "name": "Mongodb N. Virginia",
+          "statusClass": "ok",
+          "type": "Mongodb · AWS / N. Virginia (us-east-1)",
+          "metric": "4 ms",
+          "status": "Operational"
+        },
+        {
+          "name": "Mongodb Lahore",
+          "statusClass": "ok",
+          "type": "Mongodb · Lahore / JSN WS (LR-1)",
+          "metric": "9 ms",
+          "status": "Operational"
+        }
+      ]
+    },
+    {
+      "name": "Networks",
+      "count": 1,
+      "items": [
+        {
+          "statusClass": "ok",
+          "name": "JSN-LR-1",
+          "type": "Lahore, PK",
+          "metric": "10 Gbps",
+          "status": "Operational"
+        }
+      ]
+    },
+    {
+      "name": "Brands",
+      "count": 4,
+      "items": [
+        {
+          "name": "www.jalsonic.com",
+          "type": "Corporate site",
+          "metric": "96 ms",
+          "statusClass": "ok",
+          "status": "Operational"
+        },
+        {
+          "name": "www.onestbird.com",
+          "statusClass": "ok",
+          "type": "Customer portal",
+          "metric": "142 ms",
+          "status": "Operational"
+        },
+        {
+          "name": "www.enora.jalsonic.com",
+          "statusClass": "ok",
+          "type": "Corporate site",
+          "metric": "142 ms",
+          "status": "Operational"
+        },
+        {
+          "name": "www.onestbuy.com",
+          "type": "E-commerce storefront",
+          "statusClass": "ok",
+          "metric": "210 ms",
+          "status": "Under Development"
+        }
+      ]
+    },
+    {
+      "name": "APIs",
+      "count": 3,
+      "items": [
+        {
+          "name": "auth-api",
+          "statusClass": "ok",
+          "type": "/v2/auth",
+          "metric": "15 ms",
+          "status": "Operational"
+        },
+        {
+          "name": "billing-api",
+          "type": "/v1/billing",
+          "statusClass": "ok",
+          "metric": "13 ms",
+          "status": "Operational"
+        },
+        {
+          "name": "webhook-gateway",
+          "statusClass": "ok",
+          "type": "Outbound delivery",
+          "metric": "8 ms",
+          "status": "Operational"
+        }
+      ]
+    }
+  ]
+}
