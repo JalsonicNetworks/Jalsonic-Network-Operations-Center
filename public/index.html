@@ -1,0 +1,206 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jalsonic Network Operations Center — Status</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FFFFFF;
+    --line:#E4E7EA;
+    --line-soft:#EFF1F3;
+    --text:#16191C;
+    --text-dim:#6B7280;
+    --text-dimmer:#9CA3AF;
+    --ok:#0F9D58;
+    --ok-bg:#EFFAF3;
+    --warn:#B5750A;
+    --warn-bg:#FDF6E8;
+    --crit:#C4293A;
+    --crit-bg:#FCEEEF;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background:var(--bg); color:var(--text);
+	  font-family: 'Quicksand', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .mono{font-family: 'Quicksand', sans-serif;}
+
+  header{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 32px; border-bottom:1px solid var(--line);
+  }
+  .brand{display:flex; align-items:center; gap:10px;}
+  .brand .dot{width:7px; height:7px; border-radius:50%; background:var(--ok);}
+  .brand .name{font-family: 'Quicksand', sans-serif; font-weight:600; font-size:14px; letter-spacing:.02em;}
+  .brand .name span{color:var(--text-dimmer); font-weight:400;}
+  .clock{font-family: 'Quicksand', sans-serif; font-size:12.5px; color:var(--text-dim);}
+
+  .wrap{max-width:920px; margin:0 auto; padding:36px 32px 64px;}
+
+  .headline{margin-bottom:28px;}
+  .headline .status-badge{
+    display:inline-flex; align-items:center; gap:7px;
+    font-family: 'Quicksand', sans-serif; font-size:12px; letter-spacing:.03em;
+    padding:5px 10px; border-radius:3px; background:var(--ok-bg); color:var(--ok);
+    text-transform:uppercase; margin-bottom:12px;
+  }
+  .headline h1{font-size:22px; font-weight:600; letter-spacing:-.01em;}
+  .headline p{font-size:13.5px; color:var(--text-dim); margin-top:6px;}
+
+  section{margin-top:36px;}
+  .section-head{
+    display:flex; align-items:baseline; justify-content:space-between;
+    padding-bottom:8px; border-bottom:1px solid var(--line); margin-bottom:2px;
+  }
+  .section-head h2{font-size:13px; font-weight:600; letter-spacing:.04em; text-transform:uppercase; color:var(--text);}
+  .section-head .count{font-family: 'Quicksand', sans-serif; font-size:11.5px; color:var(--text-dimmer);}
+
+  .row{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:13px 2px; border-bottom:1px solid var(--line-soft);
+  }
+  .row:last-child{border-bottom:none;}
+  .row-left{display:flex; align-items:center; gap:11px; min-width:0;}
+  .row-dot{width:7px; height:7px; border-radius:50%; flex-shrink:0;}
+  .row-dot.ok{background:var(--ok);}
+  .row-dot.warn{background:var(--warn);}
+  .row-dot.crit{background:var(--crit);}
+  .row-name{font-family: 'Quicksand', sans-serif; font-size:13.5px; font-weight:500;}
+  .row-type{font-size:12px; color:var(--text-dimmer); margin-left:2px;}
+
+  .row-right{display:flex; align-items:center; gap:18px; flex-shrink:0;}
+  .row-metric{font-family: 'Quicksand', sans-serif; font-size:12.5px; color:var(--text-dim);}
+  .row-tag{
+    font-family: 'Quicksand', sans-serif; font-size:10.5px; letter-spacing:.04em;
+    text-transform:uppercase; padding:3px 8px; border-radius:2px;
+  }
+  .row-tag.ok{background:var(--ok-bg); color:var(--ok);}
+  .row-tag.warn{background:var(--warn-bg); color:var(--warn);}
+  .row-tag.crit{background:var(--crit-bg); color:var(--crit);}
+
+  footer{
+    max-width:920px; margin:0 auto; padding:20px 32px;
+    border-top:1px solid var(--line);
+    display:flex; justify-content:space-between;
+    font-family: 'Quicksand', sans-serif; font-size:11px; color:var(--text-dimmer);
+  }
+
+  @media (max-width:600px){
+    .row{flex-direction:column; align-items:flex-start; gap:8px;}
+    .row-right{width:100%; justify-content:space-between;}
+    header{padding:16px 20px;} .wrap{padding:28px 20px 48px;} footer{padding:16px 20px;}
+  }
+</style>
+</head>
+<body>
+
+  <header>
+    <div class="brand">
+      <span class="dot"></span>
+      <span class="name">Jalsonic Networks <span>/ Network Operations Center</span></span>
+    </div>
+    <span class="clock" id="clock">--:--:-- UTC</span>
+  </header>
+
+  <div class="wrap">
+
+    <div class="headline">
+      <div class="status-badge">● All systems operational</div>
+      <h1>Infrastructure status</h1>
+      <p>Live overview of databases, networks, brands, and APIs.</p>
+    </div>
+
+
+    <section>
+      <div class="section-head"><h2>Message</h2><span class="count">0</span></div>
+      <div class="row">
+        <div class="row-left"><span class="row-dot"></span><span class="row-name"></span><span class="row-type">No Message</span></div>
+        <!-- <div class="row-right"><span class="row-metric"></span><span class="row-tag ok"></span></div> -->
+      </div>
+    </section>
+
+
+    <section>
+      <div class="section-head"><h2>Databases</h2><span class="count">2</span></div>
+      <div class="row">
+        <div class="row-left"><span class="row-dot ok"></span><span class="row-name">Mongodb N. Virginia</span><span class="row-type">Mongodb · AWS / N. Virginia (us-east-1)</span></div>
+        <div class="row-right"><span class="row-metric">4 ms</span><span class="row-tag ok">Operational</span></div>
+      </div>
+      <div class="row">
+        <div class="row-left"><span class="row-dot ok"></span><span class="row-name">Mongodb Lahore</span><span class="row-type">Mongodb · Lahore / JSN WS (LR-1)</span></div>
+        <div class="row-right"><span class="row-metric">9 ms</span><span class="row-tag ok">Operational</span></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head"><h2>Networks</h2><span class="count">1</span></div>
+      <div class="row">
+        <div class="row-left"><span class="row-dot ok"></span><span class="row-name">JSN-LR-1</span><span class="row-type">Lahore, PK</span></div>
+        <div class="row-right"><span class="row-metric">10 Gbps</span><span class="row-tag ok">Operational</span></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head"><h2>Brands</h2><span class="count">3</span></div>
+      <div class="row">
+        <div class="row-left"><span class="row-dot ok"></span><span class="row-name">www.jalsonic.com</span><span class="row-type">Corporate site</span></div>
+        <div class="row-right"><span class="row-metric">96 ms</span><span class="row-tag ok">Operational</span></div>
+      </div>
+      <div class="row">
+        <div class="row-left"><span class="row-dot ok"></span><span class="row-name">www.onestbird.com</span><span class="row-type">Customer portal</span></div>
+        <div class="row-right"><span class="row-metric">142 ms</span><span class="row-tag ok">Operational</span></div>
+      </div>
+      <div class="row">
+        <div class="row-left"><span class="row-dot ok"></span><span class="row-name">www.enora.jalsonic.com</span><span class="row-type">Corporate site</span></div>
+        <div class="row-right"><span class="row-metric">142 ms</span><span class="row-tag ok">Operational</span></div>
+      </div>
+      <div class="row">
+        <div class="row-left"><span class="row-dot warn"></span><span class="row-name">www.onestbuy.com</span><span class="row-type">E-commerce storefront</span></div>
+        <div class="row-right"><span class="row-metric">210 ms</span><span class="row-tag warn">Under Development</span></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head"><h2>APIs</h2><span class="count">3</span></div>
+      <div class="row">
+        <div class="row-left"><span class="row-dot ok"></span><span class="row-name">auth-api</span><span class="row-type">/v2/auth</span></div>
+        <div class="row-right"><span class="row-metric">15 ms</span><span class="row-tag ok">Operational</span></div>
+      </div>
+      <div class="row">
+        <div class="row-left"><span class="row-dot ok"></span><span class="row-name">billing-api</span><span class="row-type">/v1/billing</span></div>
+        <div class="row-right"><span class="row-metric">13 ms</span><span class="row-tag ok">Operational</span></div>
+      </div>
+      <div class="row">
+        <div class="row-left"><span class="row-dot ok"></span><span class="row-name">webhook-gateway</span><span class="row-type">Outbound delivery</span></div>
+        <div class="row-right"><span class="row-metric">8 ms</span><span class="row-tag ok">Operational</span></div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    <span>Jalsonic Networks NOC</span>
+    <span id="footerClock">Last refreshed —</span>
+  </footer>
+
+<script>
+  function pad(n){ return n.toString().padStart(2,'0'); }
+  function tick(){
+    const now = new Date();
+    const utc = new Date(now.getTime() + now.getTimezoneOffset()*60000);
+    const str = pad(utc.getHours())+':'+pad(utc.getMinutes())+':'+pad(utc.getSeconds())+' UTC';
+    document.getElementById('clock').textContent = str;
+    document.getElementById('footerClock').textContent = 'Last refreshed ' + str;
+  }
+  tick();
+  setInterval(tick, 1000);
+</script>
+
+</body>
+</html>
