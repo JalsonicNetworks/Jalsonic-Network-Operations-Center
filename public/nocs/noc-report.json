@@ -18,7 +18,7 @@
       "items": [
         {
           "name": "Mongodb N. Virginia",
-          "statusClass": "ok",
+          "statusClass": "warn",
           "type": "Mongodb · AWS / N. Virginia (us-east-1)",
           "metric": "4 ms",
           "status": "Operational"
