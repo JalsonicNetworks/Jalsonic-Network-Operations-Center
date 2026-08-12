@@ -30,6 +30,19 @@
       ]
     },
     {
+      "name": "AI Datacenter Infrastructure Nvidia / AMD",
+      "count": 1,
+      "items": [
+        {
+          "statusClass": "ok",
+          "name": "JSN-LR-1",
+          "type": "Lahore, PK",
+          "metric": "10 Gbps",
+          "status": "Operational"
+        }
+      ]
+    },
+    {
       "name": "Networks",
       "count": 1,
       "items": [
