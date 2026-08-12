@@ -141,9 +141,8 @@
 
         <div class="row" v-for="(item, itemIndex) in section.items" :key="itemIndex">
             <div class="row-left">
-                <div>{{ item.date }} - {{ item.message }}</div>
+                <span v-html="item.message"></span>
             </div>
-
         </div>
 
       </template>
