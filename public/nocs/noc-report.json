@@ -35,9 +35,9 @@
       "items": [
         {
           "statusClass": "ok",
-          "name": "JSN-LR-1",
+          "name": "AI Enora DC / JSN-LR-1",
           "type": "Lahore, PK",
-          "metric": "10 Gbps",
+          "metric": "1K+ hits/sec",
           "status": "Operational"
         }
       ]
