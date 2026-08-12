@@ -60,28 +60,28 @@
       "count": 4,
       "items": [
         {
-          "name": "www.jalsonic.com",
+          "name": "jalsonic.com",
           "type": "Corporate site",
           "metric": "96 ms",
           "statusClass": "ok",
           "status": "Operational"
         },
         {
-          "name": "www.onestbird.com",
+          "name": "onestbird.com",
           "statusClass": "ok",
           "type": "Customer portal",
           "metric": "142 ms",
           "status": "Operational"
         },
         {
-          "name": "www.enora.jalsonic.com",
+          "name": "enora.jalsonic.com",
           "statusClass": "ok",
           "type": "Corporate site",
           "metric": "142 ms",
           "status": "Operational"
         },
         {
-          "name": "www.onestbuy.com",
+          "name": "onestbuy.com",
           "type": "E-commerce storefront",
           "statusClass": "undev",
           "metric": "210 ms",
@@ -103,6 +103,13 @@
         {
           "name": "billing-api",
           "type": "/v1/billing",
+          "statusClass": "ok",
+          "metric": "13 ms",
+          "status": "Operational"
+        },
+        {
+          "name": "enora-api",
+          "type": "/v1/enora",
           "statusClass": "ok",
           "metric": "13 ms",
           "status": "Operational"
