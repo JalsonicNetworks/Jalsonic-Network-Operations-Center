@@ -73,7 +73,7 @@
         {
           "name": "www.onestbuy.com",
           "type": "E-commerce storefront",
-          "statusClass": "ok",
+          "statusClass": "undev",
           "metric": "210 ms",
           "status": "Under Development"
         }
