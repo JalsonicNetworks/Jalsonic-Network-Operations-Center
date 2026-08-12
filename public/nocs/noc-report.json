@@ -1,14 +1,12 @@
 {
   "sections": [
     {
-      "name": "Message",
+      "name": "Announcement",
       "count": 0,
       "items": [
         {
-          "name": "",
-          "type": "No Message",
-          "status": null,
-          "metric": null
+          "date": "12-8-2026",
+          "message": "<p><strong>Enora APIs are currently under development and will go live within the next few days.</strong> During this period, you may experience temporary disruptions or unexpected issues while we finalize the APIs.</p>"
         }
       ]
     },

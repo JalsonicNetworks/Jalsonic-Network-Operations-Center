@@ -127,26 +127,51 @@
       <p>Live overview of databases, networks, brands, and APIs.</p>
     </div>
 
+    
 
     <section v-for="(section, sectionIndex) in sections" :key="sectionIndex">
-      <div class="section-head">
-          <h2>{{ section.name }}</h2>
-          <span class="count">{{ section.count }}</span>
-      </div>
 
-      <div class="row" v-for="(item, itemIndex) in section.items" :key="itemIndex">
-          <div class="row-left">
-              <span class="row-dot" :class="item.statusClass"></span>
-              <span class="row-name">{{ item.name }} </span>
-              <span class="row-type">{{ item.type }} </span>
-          </div>
+        <!-- Announcement -->
+      <template v-if="section.name === 'Announcement'">
 
-          <div class="row-right ok" v-if="item.metric || item.status">
-              <span class="row-metric"> {{ item.metric }} </span>
-              <span class="row-tag ok" :class="item.statusClass"> {{ item.status }} </span>
-          </div>
+        <div class="section-head">
+            <h2>{{ section.name }}</h2>
+            <span class="count">{{ section.count }}</span>
+        </div>
 
-      </div>
+        <div class="row" v-for="(item, itemIndex) in section.items" :key="itemIndex">
+            <div class="row-left">
+                <div>{{ item.date }} - {{ item.message }}</div>
+            </div>
+
+        </div>
+
+      </template>
+
+      <!-- Normal Sections -->
+      <template v-else>
+        
+        <div class="section-head">
+            <h2>{{ section.name }}</h2>
+            <span class="count">{{ section.count }}</span>
+        </div>
+
+        <div class="row" v-for="(item, itemIndex) in section.items" :key="itemIndex">
+            <div class="row-left">
+                <span class="row-dot" :class="item.statusClass"></span>
+                <span class="row-name">{{ item.name }} </span>
+                <span class="row-type">{{ item.type }} </span>
+            </div>
+
+            <div class="row-right ok" v-if="item.metric || item.status">
+                <span class="row-metric"> {{ item.metric }} </span>
+                <span class="row-tag ok" :class="item.statusClass"> {{ item.status }} </span>
+            </div>
+
+        </div>
+
+      </template>
+
     </section>
 
   </div>
