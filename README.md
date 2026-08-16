@@ -183,7 +183,7 @@ This keeps the JSON structure simple while allowing the frontend to control the 
 
 
 **Reporting Bugs**
-If you find an issue with EasyCSS, please report it via the GitHub issue tracker and via E-mail : github@jalsonic.com. 
+If you find an issue with JNOC, please report it via the GitHub issue tracker and via E-mail : github@jalsonic.com. 
 
 Designed, Built and Maintained by [Jalsonic Networks Teams](https://www.jalsonic.com) 2025. 
 A Division of [Jalsonic Networks](https://www.jalsonic.com) 2025.
